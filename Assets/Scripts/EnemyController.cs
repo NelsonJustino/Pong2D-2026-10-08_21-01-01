@@ -10,8 +10,16 @@ public class EnemyController : MonoBehaviour
 
     private GameObject ball;
 
-    private void Start()
+    public bool isPlayer1 = true;
+    public SpriteRenderer spriteRenderer;
+    // Start is called before the first frame update
+    void Start()
     {
+        if (isPlayer1)
+            spriteRenderer.color = SaveController.Instance.colorPlayer1;
+        else
+            spriteRenderer.color = SaveController.Instance.colorPlayer2;
+
         rb = GetComponent<Rigidbody2D>();
         ball = GameObject.Find("Ball"); //Encontra a bola
     }

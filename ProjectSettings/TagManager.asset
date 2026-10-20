@@ -8,6 +8,10 @@ TagManager:
   - Enemy
   - PlayerPoint
   - EnemyPoint
+  - Player1
+  - Player2
+  - Player1Wall
+  - Player2Wall
   layers:
   - Default
   - TransparentFX

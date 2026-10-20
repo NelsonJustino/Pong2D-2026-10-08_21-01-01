@@ -5,12 +5,17 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public float speed = 5f;
+
+    public bool isPlayer1 = true;
+    public SpriteRenderer spriteRenderer;
     // Start is called before the first frame update
     void Start()
     {
-        
+        if (isPlayer1)
+            spriteRenderer.color = SaveController.Instance.colorPlayer1;
+        else
+            spriteRenderer.color = SaveController.Instance.colorPlayer2;
     }
-
     // Update is called once per frame
     void Update()
     {

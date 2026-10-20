@@ -31,14 +31,18 @@ public class Ball : MonoBehaviour
 
             // Inverte a direção do movimento no eixo Y.
             newVelocity.y = -newVelocity.y;
-            //aumenta a velocidade da bolinha
-            rb.velocity *= speedUp;
 
             // Aplica a nova velocidade ao Rigidbody2D da bola.
             rb.velocity = newVelocity;
         }
 
-        if(collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Enemy"))
+        if (collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Enemy"))
+        {
+            rb.velocity = new Vector2(-rb.velocity.x, rb.velocity.y);
+            rb.velocity *= speedUp;
+        }
+
+        if (collision.gameObject.CompareTag("Player1") || collision.gameObject.CompareTag("Player2"))
         {
             rb.velocity = new Vector2(-rb.velocity.x, rb.velocity.y);
             rb.velocity *= speedUp;
@@ -48,11 +52,22 @@ public class Ball : MonoBehaviour
         {
             gameManager.PlayerScore();
             ResetBall();
-        }else if (collision.gameObject.CompareTag("EnemyPoint"))
+        }
+        else if (collision.gameObject.CompareTag("EnemyPoint"))
         {
             gameManager.EnemyScore();
             ResetBall();
         }
-    }
 
+        if (collision.gameObject.CompareTag("Player1Wall"))
+        {
+            gameManager.Player2Score();
+            ResetBall();
+        }
+        else if (collision.gameObject.CompareTag("Player2Wall"))
+        {
+            gameManager.Player1Score();
+            ResetBall();
+        }
+    }
 }
